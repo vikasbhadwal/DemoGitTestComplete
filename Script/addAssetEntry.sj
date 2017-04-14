@@ -1,44 +1,35 @@
 ﻿//USEUNIT ImportFiles
 
-function addAssestEntry()
 
+
+
+function addAssestEntry()
 {
-    var functionName, username,currentPage
+  //Loads all test data from xls file.  
+    var username,currentPage
     var DataQry =LoadDataSet("addAssetEntry");
     username = DataQry.FieldByName("username").Value;
     assetID = randInt();
     assetDescription = DataQry.FieldByName("assetDescription").Value;
-     assetClass = DataQry.FieldByName("assetClass").Value;
-    
+    assetClass = DataQry.FieldByName("assetClass").Value;
     division = DataQry.FieldByName("division").Value;
     site=DataQry.FieldByName("site").Value;
-    
     location=DataQry.FieldByName("location").Value;
     notifyEmail=notes=DataQry.FieldByName("notifyEmail").Value;
-
     notes=DataQry.FieldByName("notes").Value;
-    
     datePurchased=DataQry.FieldByName("datePurchased").Value;
     parent=DataQry.FieldByName("parent").Value;
-   
     accID=DataQry.FieldByName("accID").Value;
     serialNumber=DataQry.FieldByName("serialNumber").Value;
-    
     modelNumber=DataQry.FieldByName("modelNumber").Value;
-    
     manufacturer=DataQry.FieldByName("manufacturer").Value;
-   size=DataQry.FieldByName("size").Value;
-   rpm=DataQry.FieldByName("rpm").Value;
-   hp=DataQry.FieldByName("hp").Value;
-   electData=DataQry.FieldByName("electData").Value;
-
-    
-    
-    
-    
-    
-        
+    size=DataQry.FieldByName("size").Value;
+    rpm=DataQry.FieldByName("rpm").Value;
+    hp=DataQry.FieldByName("hp").Value;
+    electData=DataQry.FieldByName("electData").Value;
     Log.Message("Username:     "+username);
+    
+    // Navigates and Login
     navigates();
     loginUser(username);
     Sys.Process(ConfigFile.browserType).Page("*").Wait();
@@ -55,7 +46,7 @@ function addAssestEntry()
     logStep(flag,"Select HVAC Assets Type");
     
     flag=clickObjectInWindows(["ObjectIdentifier", "WndCaption"], ["Select", "Select"],3);
-   logStep(flag,"Click on Select button.");
+    logStep(flag,"Click on Select button.");
    
     var asset_id_input= waitForObject(["ObjectIdentifier", "ObjectType"], ["Date Entered", "Edit"]);
     asset_id_input.Keys(assetID);
@@ -76,58 +67,44 @@ function addAssestEntry()
     var parent_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtParent')", "Edit"]);
     parent_input.Keys(parent);
     
-    
-     var notifyEmail_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('NotifyEMailAddr')", "Edit"]);
-     notifyEmail_input.Keys(notifyEmail);
+    var notifyEmail_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('NotifyEMailAddr')", "Edit"]);
+    notifyEmail_input.Keys(notifyEmail);
   
-    
-    
-     var notes_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtNotes')", "Edit"]);
-     notes_input.Keys(notes);
-  
-     Log.Message(getCurrentDate());
-      
-     
-     
-     
-      var accID_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtEquipId')", "Edit"]);
-      accID_input.Keys(accID);
-      
-
-      
-      var serialNumber_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtSerialNbr')", "Edit"]);
-      serialNumber_input.Keys(serialNumber);
-      
-      var modelNumber_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtModelNbr')", "Edit"]);
-      modelNumber_input.Keys(modelNumber);
-      
-      
+    var notes_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtNotes')", "Edit"]);
+    notes_input.Keys(notes);
  
+    var accID_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtEquipId')", "Edit"]);
+    accID_input.Keys(accID);
+     
+    var serialNumber_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtSerialNbr')", "Edit"]);
+    serialNumber_input.Keys(serialNumber);
       
-      var manufacturer_input= waitForObject(["Name", "ObjectType"], ["Edit('Description')", "Edit"]);
-      manufacturer_input.Keys(manufacturer);
-          
-      var sizeCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser1')", "ComboBox"]); 
-      sizeCB.Keys(size);
+    var modelNumber_input= waitForObject(["Name", "ObjectType"], ["WinFormsObject('txtModelNbr')", "Edit"]);
+    modelNumber_input.Keys(modelNumber);
       
-      var rpmCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser2')", "ComboBox"]); 
-      rpmCB.Keys(rpm)
+    var manufacturer_input= waitForObject(["Name", "ObjectType"], ["Edit('Description')", "Edit"]);
+    manufacturer_input.Keys(manufacturer);
+    
+    var sizeCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser1')", "ComboBox"]); 
+    sizeCB.Keys(size);
       
-      var hpCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser3')", "ComboBox"]); 
-      hpCB.Keys(hp)
+    var rpmCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser2')", "ComboBox"]); 
+    rpmCB.Keys(rpm)
       
-      var electricityDataCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser4')", "ComboBox"]); 
-      electricityDataCB.Keys(electData)
+    var hpCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser3')", "ComboBox"]); 
+    hpCB.Keys(hp)
       
+    var electricityDataCB= waitForObject(["Name", "ObjectType"], ["WinFormsObject('cboUser4')", "ComboBox"]); 
+    electricityDataCB.Keys(electData)
       
-       flag=clickObject(["ObjectIdentifier", "ObjectType"], ["Save", "Button"]); 
-logStep(flag,"Click on Save button");
+    flag=clickObject(["ObjectIdentifier", "ObjectType"], ["Save", "Button"]); 
+    logStep(flag,"Click on Save button");
       
-      flag= clickObject(["ObjectIdentifier", "ObjectType"], ["OK", "Button"]); 
-      logStep(flag,"Click on OK button");
+    flag= clickObject(["ObjectIdentifier", "ObjectType"], ["OK", "Button"]); 
+    logStep(flag,"Click on OK button");
       
-      flag=clickObject(["ObjectIdentifier", "ObjectType"], ["OK", "Button"]); 
-      logStep(flag,"Click on Yes button");
+    flag=clickObject(["ObjectIdentifier", "ObjectType"], ["OK", "Button"]); 
+    logStep(flag,"Click on Yes button");
       
      //  Delay(15000);
       // var browser;
@@ -142,23 +119,22 @@ logStep(flag,"Click on Save button");
      flag=clickObjectInWindows(["Name", "ObjectType"], ["PageTab('Activity ')", "PageTab"],1); 
      logStep(flag,"Click on Activity tab");
       
-      
+    // Verify that Record in the grid with a Description of 'Create Asset' is present.
       var description_createAsset=waitForObjectInWindows(["Name", "Value"], ["Cell('Description')", "Create Asset"],1); 
-
       if(description_createAsset.Exists)
        Log.Checkpoint("Record in the grid with a Description of 'Create Asset' is present.");
       else
        Log.Error("Record in the grid with a Description of 'Create Asset' is not present.");   
 
+       
       var return_btn= clickObjectInWindows(["ObjectIdentifier", "ObjectType","VisibleOnScreen"], ["Return", "Button",true],1); 
-     logStep(flag,"Click on Return button");
+      logStep(flag,"Click on Return button");
       
-    
-      
-        flag= clickObjectInWindows(["Name", "ObjectType"], ["Button('OK')", "Button"],1); 
+      flag= clickObjectInWindows(["Name", "ObjectType"], ["Button('OK')", "Button"],1); 
       logStep(flag,"Click on No button");
 
-      
-
+       resetApp();
+    
+    
 
 }

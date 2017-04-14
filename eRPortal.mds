@@ -26,7 +26,21 @@
 	</folders>
 	<config language="{E42909F2-4390-4F5D-94B8-FABF59BABFCE}" />
 	<testItems key="{3BD1C2B8-3091-405E-AEB7-5C024D32367D}">
-		<children />
+		<children>
+			<testItem name="Scenarios" key="{27D032D7-9809-4E62-AEA5-0E6EDB4603A1}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+				<testParameters />
+				<children>
+					<testItem name="addAssetEntry" key="{FB5B27B9-F36F-4615-91D3-B4E3E6F54EF3}" group="False" enabled="True" testMoniker="{9A047CA0-8660-4F35-B615-606AEBC8CF52}addAssestEntry" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="addWorkOrderEntry" key="{957EB62B-F70C-4F96-AB3E-165F28AB15A5}" group="False" enabled="True" testMoniker="{7CF04F34-D620-41EF-8397-6898C92D23CD}addWorkOrderEntry" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+				</children>
+			</testItem>
+		</children>
 	</testItems>
 	<variables key="{4DEEE215-49C5-4B79-A18D-795B068B9865}">
 		<data Version="3" />

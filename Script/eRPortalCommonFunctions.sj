@@ -1,17 +1,25 @@
 ﻿//USEUNIT ConfigFile
 
+
+/*****************************************************************************
+  Purpose: Naviagtes to Application URL.
+  Parameter(s): None.
+  Remarks: None.
+  Return type: None
+
+/*****************************************************************************/
+
  function navigates()
- { 
+ {
  var browserProcess = Sys.FindChild("Name", "Process(" + ConfigFile.browserType + "\")", 1);
  if (browserProcess.Exists ==  false)
     {
         Log.Message("Browser is not launched.")
         run_browser();
-       Sys.Process(browserType).toURL(appURL, 7000);
-       
+        Sys.Process(browserType).toURL(appURL, 7000);
     }
     
-    }
+ }
     
 
 
@@ -44,9 +52,9 @@ function run_browser()
 
 /*****************************************************************************
   Purpose: Logs user in with the specified credentials.
-  Parameter(s): emailID, password
+  Parameter(s): emailID
   Return type: None.
-  Created By: Jitender Rawat on 9th August 2015
+  Created By: Vikas Bhadwal
 /*****************************************************************************/
 function loginUser(emailID)
 {
@@ -59,6 +67,12 @@ function loginUser(emailID)
    
 }
 
+/*****************************************************************************
+  Purpose: Loads test data from xls
+  Parameter(s): dataSetFile(Path of xls file)
+  Return type: None.
+  Created By: Vikas Bhadwal
+/*****************************************************************************/
 
 function LoadDataSet(dataSetFile)
 {
@@ -126,27 +140,43 @@ function clickObject(propNames, propValues, scroll, timeout)
     object.Click();
     return true;
 }
+
+
+/*****************************************************************************
+  Purpose: Wait untill page gets loaded completly
+  Parameter(s): None
+  Remarks: None.
+  Return type: Boolean
+  
+
+/*****************************************************************************/
+
 function waitForPage()
 {
     Sys.Process(browserType).Page("*").Wait();
 }
 
-function navigateToApp()
-{
-    //Go to URL.
-   Sys.Process(browserType).toURL(appURL, 7000);
-   
-}
+
+
+
+/*****************************************************************************
+  Purpose: Add Execution Delay
+  Parameter(s): time in milliseconds
+  Remarks: None.
+  Return type: None
+/*****************************************************************************/
 
 function addDelay1(time)
-
 {
-
 Delay(time);
-
 }
 
-
+/*****************************************************************************
+  Purpose: Scroll to the element
+  Parameter(s): reference of element
+  Remarks: None.
+  Return type: Boolean
+/*****************************************************************************/
 function scrollDownToObject(object)
 {
     var i = 0;
@@ -172,6 +202,19 @@ function scrollDownToObject(object)
     return false;
 }
 
+/*****************************************************************************
+  Purpose:      This method delays script execution until the specified object appears or the specified time limit is reached.
+  Parameter(s): @propNames = An array of strings containing the names of properties or a single property name
+                @propValues = An array containing the values of the specified properties or a single property value
+                @windows= Browser window index.[i.e 1,2,3]
+                @timeout = Sets how long to wait (in milliseconds) for object to appear on the screen (Optional - default: defaultTimeout)
+                @pollInterval = The frequency (in milliseconds) with which to check the condition (Optional - default: defaultPollInterval)
+  Return type:  Boolean
+  Remarks:      If the user specifies a pollInterval > 0, then the interval may be greater as the cost of FindChild is not factored in.
+  
+/*****************************************************************************/
+
+
 function waitForObjectInWindows(propNames, propValues,windows, timeout, pollInterval)
 {
 //Sys.Process(browserType).Page("*").Wait();
@@ -192,6 +235,15 @@ function waitForObjectInWindows(propNames, propValues,windows, timeout, pollInte
     return false;
 }
 
+
+
+/*****************************************************************************
+  Purpose: Select any particular Element from combobox
+  Parameter(s): reference of element
+  Remarks: None.
+  Return type: Boolean
+/*****************************************************************************/
+
 function selectItem(select,value)
 
 {
@@ -202,6 +254,12 @@ function selectItem(select,value)
 
 }
 
+/*****************************************************************************
+  Purpose: Get current system date
+  Parameter(s): None
+  Remarks: None.
+  Return type: Current date on dd-mm-yyyy format
+/*****************************************************************************/
 
 function getCurrentDate()
 {
@@ -221,6 +279,12 @@ return today
 
 
 
+/*****************************************************************************
+  Purpose: to generate random number
+  Parameter(s): none
+  Remarks: None.
+  Return type: Random Number
+/*****************************************************************************/
 
 function randInt()
 {
@@ -228,12 +292,18 @@ function randInt()
 }
 
 
-
-
-
+/*****************************************************************************
+  Purpose: Simulate a mouse-click on an element located by property names and values.
+  Parameter(s): Properties and values to search for object by, scroll to object (boolean - optional)
+  Parameter(s): @propNames = An array of strings containing the names of properties or a single property name
+                @propValues = An array containing the values of the specified properties or a single property value
+                @windows= Browser window index.[i.e 1,2,3]
+  Remarks: None.
+  Return type: Boolean
+/*****************************************************************************/
 
 function clickObjectInWindows(propNames, propValues, windows,scroll, timeout)
-{       //Sys.Process(browserType).Page("*").Wait();
+{       
     
     var object = waitForObjectInWindows(propNames, propValues, windows,timeout);
     if (!object)
@@ -248,6 +318,14 @@ function clickObjectInWindows(propNames, propValues, windows,scroll, timeout)
 }
 
 
+/*****************************************************************************
+  Purpose: Logging of steps performed using test execution
+  Parameter(s): none
+  Remarks: None.
+  Return type: None
+/*****************************************************************************/
+
+
 function logStep(flag,desc)
 {
 
@@ -255,30 +333,33 @@ if(flag)
         Log.Checkpoint(desc);
     else
         Log.Error(desc);
+}
 
 
+/*****************************************************************************
+  Purpose: To Logout currently logged in user
+  Parameter(s): none
+  Remarks: None.
+  Return type: none.
+/*****************************************************************************/
 
+function resetApp()
+{  addDelay1(5000);
+   var logo=waitForObject(["Name", "ObjectType"], ["Image('logo_png')", "Image"],true);
+
+   if(logo.Exists)
+   {
+   var username=clickObject(["contentText", "ObjectType"], ["regexp:^Hello", "TextNode"],true);
+   var username=clickObject(["contentText", "ObjectType"], ["Logout", "Link"],true);
+   
+   }
+   
 }
 
 
 
 
 
-
-
-
-
-
-
-
-
-/*****************************************************************************
-  Purpose: Opens Excel data sheet for querying.
-  Parameter(s): Name of file to open, location of file.
-  Return type: String
-  Remarks: DataQry object.
-  Created By: Jitender Rawat on 9th August 2015
-/*****************************************************************************/
 
 
 
