@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="eRPortalCommonFunctions" key="{9F463FA5-B078-4781-861B-FB4DEBB555D7}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="eRPortalCommonFunctions.sj" />
+		</child>
+		<child name="addAssetEntry" key="{9A047CA0-8660-4F35-B615-606AEBC8CF52}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="addAssetEntry.sj" />
+		</child>
+		<child name="ConfigFile" key="{71D5079E-AE37-449E-B40F-759807A8CBB0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ConfigFile.sj" />
+		</child>
+		<child name="ImportFiles" key="{B4415340-FF68-40E4-AF03-ED1A830792B2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ImportFiles.sj" />
+		</child>
+		<child name="addWorkOrderEntry" key="{7CF04F34-D620-41EF-8397-6898C92D23CD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="addWorkOrderEntry.sj" />
+		</child>
+	</children>
+	<folders>
+		<folder caption="scenarios" description="A logical folder that is used to organize project items and elements." moniker="">
+			<references>
+				<ref key="{9A047CA0-8660-4F35-B615-606AEBC8CF52}" />
+				<ref key="{7CF04F34-D620-41EF-8397-6898C92D23CD}" />
+			</references>
+		</folder>
+	</folders>
+</Root>
